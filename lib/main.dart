@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 ///
 ///
@@ -41,7 +42,7 @@ class Site extends StatelessWidget {
         800: baseColor,
         900: baseColor,
       }),
-      brightness: PlatformDispatcher.instance.platformBrightness,
+      brightness: Brightness.dark,
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
 
@@ -88,16 +89,83 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0x00ca8ba2),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset('assets/images/testainers-250-transparent.png'),
-            Text(
-              'testainers',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset('assets/images/testainers-500-transparent.png'),
+              Text(
+                'testainers',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(fontSize: 50),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  'Testainers is a powerful Dart plugin designed to streamline '
+                  'the management of containers for testing purposes.',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(fontSize: 20),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  'With Testainers, developers can effortlessly create, '
+                  'configure, and manage isolated test environments within '
+                  'containers, ensuring consistent and reliable testing '
+                  'processes.',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(fontSize: 20),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: ElevatedButton(
+                      onPressed: () =>
+                          launchUrlString('https://pub.dev/packages/testainers'),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Image.asset('assets/icons/dart.png', height: 16),
+                          const SizedBox(width: 8),
+                          const Text('pub.dev'),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: ElevatedButton(
+                      onPressed: () =>
+                          launchUrlString('https://github.com/testainers'),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Image.asset('assets/icons/github.png', height: 16),
+                          const SizedBox(width: 8),
+                          const Text('GitHub'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
