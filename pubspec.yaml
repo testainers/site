@@ -12,11 +12,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-#  flutter_localizations:
-#    sdk: flutter
+  #  flutter_localizations:
+  #    sdk: flutter
 
   # https://pub.dev/packages/google_fonts
-  google_fonts: 5.1.0
+  google_fonts: ^5.1.0
+
+  # https://pub.dev/packages/url_launcher
+  url_launcher: ^6.1.12
 
 dev_dependencies:
   # https://pub.dev/packages/flutter_lints
@@ -30,4 +33,5 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/icons/
     - assets/images/
