@@ -7,7 +7,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
+    permissions:
+      contents: write
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
@@ -32,6 +34,10 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+
+      - name: Flutter Config
+        timeout-minutes: 2
+        run: flutter config --no-analytics --no-animations
 
       - name: Flutter Pub Get
         timeout-minutes: 2
