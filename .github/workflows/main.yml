@@ -35,10 +35,6 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Flutter Config
-        timeout-minutes: 2
-        run: flutter config --no-analytics --no-animations
-
       - name: Flutter Pub Get
         timeout-minutes: 2
         run: flutter pub get
