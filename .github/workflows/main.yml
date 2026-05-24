@@ -17,7 +17,7 @@ jobs:
       - name: Get Pubspec Version
         id: version-step
         run: |
-          export VERSION=$(grep 'version:' pubspec.yaml | cut -c 10- | cut -f 1 -d '+')
+          export VERSION=$(grep 'version:' version.yaml | cut -c 10- | cut -f 1 -d '+')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Check if version is used
@@ -30,23 +30,18 @@ jobs:
             exit 1
           fi
 
-      - name: Flutter Environment
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-
-      - name: Flutter Pub Get
-        timeout-minutes: 2
-        run: flutter pub get
-
-      - name: Flutter Build Web
-        timeout-minutes: 10
-        run: flutter build web
+      - name: Build
+        run: |
+          mkdir -p build && \
+          cp -r images/ build/. && \
+          cp *.png build/. && \
+          cp *.ico build/. && \
+          cp *.html build/.
 
       - name: Publishing to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          publish_dir: ./build/web
+          publish_dir: ./build
           github_token: ${{ secrets.GITHUB_TOKEN }}
           cname: testainers.com
 
