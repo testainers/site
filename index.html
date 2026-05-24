@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testainers | E2E Testing Ecosystem</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6', // Teal 500
+                            600: '#0d9488',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 transition-colors duration-300 font-sans antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 top-0 backdrop-blur-md bg-white/70 dark:bg-slate-950/70 border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img src="./images/testainers-1024.png" alt="Testainers Logo" class="h-10 w-10 object-contain rounded-lg shadow-sm bg-white" onerror="this.src='https://placehold.co/100x100/14b8a6/white?text=T'">
+                    <span class="font-bold text-xl tracking-tight text-slate-900 dark:text-white">Testainers</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#ecosystem" class="text-sm font-medium hover:text-brand-500 transition-colors">Ecosystem</a>
+                    
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors focus:outline-none">
+                        <i class="fa-solid fa-sun text-xl hidden dark:block text-yellow-400"></i>
+                        <i class="fa-solid fa-moon text-xl block dark:hidden text-slate-600"></i>
+                    </button>
+                    
+                    <a href="https://github.com/testainers" target="_blank" class="flex items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
+                        <i class="fa-brands fa-github text-lg"></i> GitHub
+                    </a>
+                    <a href="https://hub.docker.com/u/testainers" target="_blank" class="flex items-center gap-2 bg-[#1d63ed] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
+                        <i class="fa-brands fa-docker text-lg"></i> Docker Hub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background Decoration -->
+        <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <div class="absolute -top-[20%] -right-[10%] w-[70%] h-[70%] rounded-full bg-brand-500/10 blur-3xl dark:bg-brand-500/5"></div>
+            <div class="absolute top-[40%] -left-[10%] w-[50%] h-[50%] rounded-full bg-blue-500/10 blur-3xl dark:bg-blue-500/5"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Hero Text -->
+                <div class="space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 text-sm font-semibold mb-4">
+                        <span class="flex h-2 w-2 rounded-full bg-brand-500 animate-pulse"></span>
+                        Simulate production environments
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+                        Flawless E2E testing for <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-blue-500">Dart & Flutter</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        The <strong>Testainers</strong> ecosystem streamlines the creation, configuration, and management of isolated test environments using containers. Ensure consistent, fast, and highly reliable testing processes.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                        <a href="#ecosystem" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-600 text-white font-semibold shadow-lg shadow-brand-500/30 hover:bg-brand-500 transition-all hover:-translate-y-1 text-center">
+                            Explore Projects
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="relative mx-auto w-full max-w-md lg:max-w-none flex justify-center lg:justify-end">
+                    <img src="./images/testainers-1024.png" alt="Testainers Ecosystem" class="w-full h-auto object-cover rounded-3xl shadow-2xl dark:shadow-black/50 animate-float bg-white" onerror="this.src='https://placehold.co/600x600/1e293b/white?text=Testainers+Logo'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Section -->
+    <section id="ecosystem" class="py-24 bg-white dark:bg-slate-900 transition-colors relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Ecosystem Projects</h2>
+                <p class="text-slate-600 dark:text-slate-400">Modular tools and optimized containers designed specifically to enhance your testing workflow, networking, and validations.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                
+                <!-- 1. Testainers Plugin -->
+                <div class="group bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-500 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/10 flex flex-col h-full">
+                    <div class="h-14 w-14 rounded-2xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center text-brand-600 dark:text-brand-400 mb-6 text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-plug"></i>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md">Dart</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 rounded-md">Flutter</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-md">Plugin</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Testainers</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-grow">
+                        Testainers is a powerful Dart plugin designed to streamline the management of containers for testing purposes. Effortlessly create, configure, and manage isolated test environments within containers.
+                        <br><br>
+                        Provides a user-friendly interface to handle container orchestration, allowing quick spin up/tear down, dependency definition, and seamless test execution for reproducible workflows.
+                    </p>
+                    <div class="mt-6 flex flex-wrap items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <a href="https://github.com/testainers/testainers/" target="_blank" class="text-slate-600 hover:text-brand-500 dark:text-slate-400 dark:hover:text-brand-400 flex items-center gap-1.5 text-sm font-medium transition-colors"><i class="ph-fill ph-github-logo text-lg"></i> GitHub</a>
+                        <a href="https://pub.dev/packages/testainers" target="_blank" class="text-slate-600 hover:text-brand-500 dark:text-slate-400 dark:hover:text-brand-400 flex items-center gap-1.5 text-sm font-medium transition-colors"><i class="ph-fill ph-package text-lg"></i> pub.dev</a>
+                    </div>
+                </div>
+
+                <!-- 2. check CLI -->
+                <div class="group bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-500 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/10 flex flex-col h-full">
+                    <div class="h-14 w-14 rounded-2xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400 mb-6 text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-terminal"></i>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-md">HTTP</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-md">Client</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-md">CLI</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md">Docker</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">check</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-grow">
+                        A micro HTTP client CLI written in Dart. Designed to be cross-platform and extremely easy to use for CLI tasks and creating healthchecks inside container images.
+                        <br><br>
+                        Empowers users to seamlessly navigate HTTP requests for API testing, data retrieval, and web development without cumbersome setups.
+                    </p>
+                    <div class="mt-6 flex flex-wrap items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <a href="https://github.com/testainers/check" target="_blank" class="text-slate-600 hover:text-brand-500 dark:text-slate-400 dark:hover:text-brand-400 flex items-center gap-1.5 text-sm font-medium transition-colors"><i class="ph-fill ph-github-logo text-lg"></i> GitHub</a>
+                        <a href="https://github.com/testainers/check/releases/latest" target="_blank" class="text-slate-600 hover:text-brand-500 dark:text-slate-400 dark:hover:text-brand-400 flex items-center gap-1.5 text-sm font-medium transition-colors"><i class="ph-fill ph-tag text-lg"></i> Releases</a>
+                    </div>
+                </div>
+
+                <!-- 3. httpbucket -->
+                <div class="group bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-500 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/10 flex flex-col h-full">
+                    <div class="h-14 w-14 rounded-2xl bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center text-pink-600 dark:text-pink-400 mb-6 text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-md">HTTP</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-md">Server</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md">Docker</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">httpbucket</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-grow">
+                        A powerful microservice designed specifically for testing HTTP requests with a wide range of request URLs. 
+                        <br><br>
+                        Serves as a valuable tool for developers and QA teams. By providing a flexible and user-friendly interface, it simplifies the process of testing and validating various types of HTTP requests.
+                    </p>
+                    <div class="mt-6 flex flex-wrap items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <a href="https://github.com/testainers/httpbucket" target="_blank" class="text-slate-600 hover:text-brand-500 dark:text-slate-400 dark:hover:text-brand-400 flex items-center gap-1.5 text-sm font-medium transition-colors"><i class="ph-fill ph-github-logo text-lg"></i> GitHub</a>
+                        <a href="https://hub.docker.com/r/testainers/httpbucket" target="_blank" class="text-slate-600 hover:text-brand-500 dark:text-slate-400 dark:hover:text-brand-400 flex items-center gap-1.5 text-sm font-medium transition-colors"><i class="ph-fill ph-docker-logo text-lg"></i> Docker Hub</a>
+                    </div>
+                </div>
+
+                <!-- 4. sshd-container -->
+                <div class="group bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-500 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/10 flex flex-col h-full">
+                    <div class="h-14 w-14 rounded-2xl bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center text-sky-600 dark:text-sky-400 mb-6 text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-1 bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 rounded-md">SSH</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-md">Server</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md">Docker</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">sshd-container</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-grow">
+                        A small container image designed specifically for testing SSH connections. It serves as a lightweight and efficient tool to verify and troubleshoot SSH connectivity.
+                        <br><br>
+                        Includes a minimal OS with essential SSH components, reducing image size. Highly customizable for seamless integration into CI/CD pipelines.
+                    </p>
+                    <div class="mt-6 flex flex-wrap items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <a href="https://github.com/testainers/sshd-container" target="_blank" class="text-slate-600 hover:text-brand-500 dark:text-slate-400 dark:hover:text-brand-400 flex items-center gap-1.5 text-sm font-medium transition-colors"><i class="ph-fill ph-github-logo text-lg"></i> GitHub</a>
+                        <a href="https://hub.docker.com/r/testainers/sshd-container" target="_blank" class="text-slate-600 hover:text-brand-500 dark:text-slate-400 dark:hover:text-brand-400 flex items-center gap-1.5 text-sm font-medium transition-colors"><i class="ph-fill ph-docker-logo text-lg"></i> Docker Hub</a>
+                    </div>
+                </div>
+
+                <!-- 5. telnetd-container -->
+                <div class="group bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-500 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/10 flex flex-col h-full">
+                    <div class="h-14 w-14 rounded-2xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-6 text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-desktop"></i>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-md">Telnet</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-md">Server</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md">Docker</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">telnetd-container</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-grow">
+                        A highly optimized, small Alpine-based container image designed specifically for testing TELNET connections.
+                        <br><br>
+                        Installs a lightweight telnet server, providing an isolated and instant environment to validate legacy network protocols and client behaviors during E2E tests.
+                    </p>
+                    <div class="mt-6 flex flex-wrap items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <a href="https://github.com/testainers/telnetd-container" target="_blank" class="text-slate-600 hover:text-brand-500 dark:text-slate-400 dark:hover:text-brand-400 flex items-center gap-1.5 text-sm font-medium transition-colors"><i class="ph-fill ph-github-logo text-lg"></i> GitHub</a>
+                        <a href="https://hub.docker.com/r/testainers/telnetd-container" target="_blank" class="text-slate-600 hover:text-brand-500 dark:text-slate-400 dark:hover:text-brand-400 flex items-center gap-1.5 text-sm font-medium transition-colors"><i class="ph-fill ph-docker-logo text-lg"></i> Docker Hub</a>
+                    </div>
+                </div>
+
+                <!-- 6. snmpd-container -->
+                <div class="group bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-500 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/10 flex flex-col h-full">
+                    <div class="h-14 w-14 rounded-2xl bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center text-yellow-600 dark:text-yellow-400 mb-6 text-2xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-tower-broadcast"></i>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs font-bold px-2 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-md">SNMP</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-md">Server</span>
+                        <span class="text-xs font-bold px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md">Docker</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">snmpd-container</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-grow">
+                        A minimal container image explicitly crafted for testing SNMP (Simple Network Management Protocol) connections and data polling.
+                        <br><br>
+                        Perfect for simulating network devices and appliances to test monitoring tools, managers, and agents in an automated, containerized workflow.
+                    </p>
+                    <div class="mt-6 flex flex-wrap items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <a href="https://github.com/testainers/snmpd-container" target="_blank" class="text-slate-600 hover:text-brand-500 dark:text-slate-400 dark:hover:text-brand-400 flex items-center gap-1.5 text-sm font-medium transition-colors"><i class="ph-fill ph-github-logo text-lg"></i> GitHub</a>
+                        <a href="https://hub.docker.com/r/testainers/snmpd-container" target="_blank" class="text-slate-600 hover:text-brand-500 dark:text-slate-400 dark:hover:text-brand-400 flex items-center gap-1.5 text-sm font-medium transition-colors"><i class="ph-fill ph-docker-logo text-lg"></i> Docker Hub</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-12 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <img src="./testainers-1024.png" alt="Testainers Logo" class="h-8 w-8 object-contain rounded bg-white" onerror="this.src='https://placehold.co/100x100/14b8a6/white?text=T'">
+                <span class="font-bold text-lg text-slate-900 dark:text-white">Testainers</span>
+            </div>
+            <p class="text-sm text-slate-500 dark:text-slate-400 text-center md:text-left">
+                Built to make developers' lives easier. <br class="md:hidden"> 
+                &copy; <span id="year"></span> Testainers. All rights reserved.
+            </p>
+            <div class="flex gap-4">
+                <a href="https://github.com/testainers" target="_blank" class="text-slate-400 hover:text-brand-500 transition-colors text-2xl">
+                    <i class="ph-fill ph-github-logo"></i>
+                </a>
+                <a href="https://hub.docker.com/u/testainers" target="_blank" class="text-slate-400 hover:text-[#1d63ed] transition-colors text-2xl">
+                    <i class="ph-fill ph-docker-logo"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme Logic -->
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check for saved user preference, if any, on load of the website
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            // toggle theme
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
